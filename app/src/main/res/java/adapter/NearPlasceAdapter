@@ -1,0 +1,67 @@
+package com.example.myaccount.demo;
+
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+
+public class NearPlasceAdapter extends RecyclerView.Adapter<NearPlasceAdapter.MyHolder> {
+    ArrayList<GoogolePlaceModel> list;
+    Activity context;
+
+    public NearPlasceAdapter(ArrayList<GoogolePlaceModel> list, Activity context) {
+        this.list = list;
+        this.context = context;
+    }
+
+    @NonNull
+    @Override
+    public NearPlasceAdapter.MyHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(context).inflate(R.layout.one_raw, viewGroup, false);
+        return new MyHolder(view);
+    }
+
+    @SuppressLint({"ResourceAsColor", "SetTextI18n"})
+    @Override
+    public void onBindViewHolder(@NonNull NearPlasceAdapter.MyHolder myHolder, int i) {
+
+        Picasso.get().load(list.get(i).getIcon()).into(myHolder.icon);
+        myHolder.txtName.setText(list.get(i).getName());
+        if (list.get(i).isOpen()) {
+            myHolder.txtOpen.setText("Open now");
+        } else {
+            myHolder.txtOpen.setText("Closed");
+        }
+        myHolder.txtRating.setText(String.valueOf(list.get(i).getRating()));
+    }
+
+    @Override
+    public int getItemCount() {
+        return list.size();
+    }
+
+    public class MyHolder extends RecyclerView.ViewHolder {
+        private final ImageView icon;
+        private final TextView txtName, txtOpen, txtRating;
+
+        public MyHolder(@NonNull View itemView) {
+            super(itemView);
+
+            icon = (ImageView) itemView.findViewById(R.id.icon);
+            txtName = (TextView) itemView.findViewById(R.id.txtName);
+            txtOpen = (TextView) itemView.findViewById(R.id.txtOpen);
+            txtRating = (TextView) itemView.findViewById(R.id.txtRating);
+        }
+    }
+}
