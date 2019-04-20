@@ -1,3 +1,6 @@
+<item name="coordinatorLayoutStyle">@style/Widget.Support.CoordinatorLayout</item>
+
+
 # near_place
 find current location,near places using google api, recycler view, retrofit
 
