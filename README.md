@@ -1,4 +1,4 @@
-//<item name="coordinatorLayoutStyle">@style/Widget.Support.CoordinatorLayout</item>
+//<item name=coordinatorLayoutStyle>@style/Widget.Support.CoordinatorLayout</item>
 
 
 # near_place
